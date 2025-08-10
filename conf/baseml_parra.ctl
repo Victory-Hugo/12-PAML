@@ -4,9 +4,9 @@
    包含标准参数和新增的并行控制参数
 */
 
-      seqfile = stewart.aa    * sequence data file name
-     treefile = stewart.trees * tree structure file name  
-      outfile = mlb           * main result file name
+      seqfile = /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/examples/Example.fasta    * sequence data file name
+     treefile = /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/examples/Example.treefile * tree structure file name  
+      outfile = /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/output/mlb           * main result file name
 
         noisy = 3    * 0,1,2,3,9: how much rubbish on the screen
       verbose = 1    * 0: concise; 1: detailed; 2: too much

@@ -1,0 +1,20 @@
+CodeML Parallel Analysis Results
+=================================
+
+Input files:
+  Control file: codeml.ctl
+  Sequence file: stewart.aa
+
+Dataset:
+  5 sequences, 64 sites, 64 patterns
+  Model: 2, NSsites: 0
+  Seqtype: 2 (amino acid)
+
+Results:
+  Log-likelihood: 2.85332067
+  Parameters: kappa=2.0000, omega=0.4000
+
+Computational details:
+  Function evaluations: 1
+  Time: 0.000173 seconds
+  Threads: 4

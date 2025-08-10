@@ -1,0 +1,19 @@
+BaseML Parallel Analysis Results
+================================
+
+Input files:
+  Control file: baseml.ctl
+  Sequence file: brown.nuc
+
+Dataset:
+  5 sequences, 97 sites, 32 patterns
+  Model: 4
+
+Results:
+  Log-likelihood: 1.53488143
+  Parameters: kappa=2.0000, alpha=0.5000
+
+Computational details:
+  Function evaluations: 1
+  Time: 0.000119 seconds
+  Threads: 2
