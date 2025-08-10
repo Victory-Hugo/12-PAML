@@ -404,7 +404,7 @@ int main (int argc, char *argv[])
       fprintf(frst1, "\n"); 
       fflush(frst1);
       free(gnodes[0]);
-      memset(com.spname, 0, NS * sizeof(char));
+      memset(com.spname, 0, sizeof(com.spname));
       if (com.fix_blength == 3)  free(com.blengths0);
 
       printf("\nTime used: %s\n", printtime(timestr));
