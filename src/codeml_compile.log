@@ -1,0 +1,138 @@
+codeml_parra.c: In function 'AllocateThreadWorkspace':
+codeml_parra.c:122:49: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  122 |     thread_conP = (double*)calloc(max_threads * com.ncode * tree.nnode, sizeof(double));
+      |                                                 ^~~
+      |                                                 cos
+codeml_parra.c:122:49: note: each undeclared identifier is reported only once for each function it appears in
+codeml_parra.c:122:61: error: 'tree' undeclared (first use in this function); did you mean 'free'?
+  122 |     thread_conP = (double*)calloc(max_threads * com.ncode * tree.nnode, sizeof(double));
+      |                                                             ^~~~
+      |                                                             free
+codeml_parra.c: In function 'lfun':
+codeml_parra.c:146:33: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  146 |     double lnL = 0, fh, *conP = com.conP;
+      |                                 ^~~
+      |                                 cos
+codeml_parra.c:165:74: error: 'tree' undeclared (first use in this function); did you mean 'free'?
+  165 |         double *thread_workspace = thread_conP + thread_id * com.ncode * tree.nnode;
+      |                                                                          ^~~~
+      |                                                                          free
+codeml_parra.c:175:25: error: implicit declaration of function 'CalculatePatternProbability' [-Wimplicit-function-declaration]
+  175 |                 prob *= CalculatePatternProbability(h, i, x, thread_workspace);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+codeml_parra.c:184:13: error: break statement used with OpenMP for loop
+  184 |             break;
+      |             ^~~~~
+codeml_parra.c:158:14: error: invalid controlling predicate
+  158 |     for (h = 0; h < com.npatt; h++) {
+      |              ^
+codeml_parra.c: In function 'ConditionalPNode':
+codeml_parra.c:195:20: error: 'nodes' undeclared (first use in this function)
+  195 |     double *conP = nodes[inode].conP;
+      |                    ^~~~~
+codeml_parra.c:204:21: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  204 |     for (h = 0; h < com.npatt; h++) {
+      |                     ^~~
+      |                     cos
+codeml_parra.c:204:14: error: invalid controlling predicate
+  204 |     for (h = 0; h < com.npatt; h++) {
+      |              ^
+codeml_parra.c: In function 'SetPSiteClass':
+codeml_parra.c:243:9: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  243 |     if (com.model <= 1) return 0;
+      |         ^~~
+      |         cos
+codeml_parra.c:252:29: error: implicit declaration of function 'GetOmegaForClass' [-Wimplicit-function-declaration]
+  252 |             com.pomega[j] = GetOmegaForClass(j, iclass, x);
+      |                             ^~~~~~~~~~~~~~~~
+codeml_parra.c:249:14: error: invalid controlling predicate
+  249 |     for (h = 0; h < com.npatt; h++) {
+      |              ^
+codeml_parra.c: In function 'Statistics':
+codeml_parra.c:265:9: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  265 |     if (com.ndata <= 1) {
+      |         ^~~
+      |         cos
+codeml_parra.c:267:16: error: implicit declaration of function 'StatisticsSingle'; did you mean 'Statistics'? [-Wimplicit-function-declaration]
+  267 |         return StatisticsSingle(fout, x, space);
+      |                ^~~~~~~~~~~~~~~~
+      |                Statistics
+codeml_parra.c:286:13: error: implicit declaration of function 'SetDataSet' [-Wimplicit-function-declaration]
+  286 |             SetDataSet(idata);
+      |             ^~~~~~~~~~
+codeml_parra.c:276:18: error: invalid controlling predicate
+  276 |     for (idata = 0; idata < com.ndata; idata++) {
+      |                  ^
+codeml_parra.c: In function 'PairwiseCodon':
+codeml_parra.c:314:34: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  314 |     dS_matrix = (double**)malloc(com.ns * sizeof(double*));
+      |                                  ^~~
+      |                                  cos
+codeml_parra.c:335:13: error: implicit declaration of function 'PairwiseDistanceCodon' [-Wimplicit-function-declaration]
+  335 |             PairwiseDistanceCodon(is, js, &dS, &dN, &t, &S, &N, space);
+      |             ^~~~~~~~~~~~~~~~~~~~~
+codeml_parra.c:330:15: error: invalid controlling predicate
+  330 |     for (is = 0; is < com.ns; is++) {
+      |               ^
+codeml_parra.c:355:21: error: passing argument 2 of 'matout' from incompatible pointer type [-Wincompatible-pointer-types]
+  355 |         matout(fds, dS_matrix, com.ns, com.ns);
+      |                     ^~~~~~~~~
+      |                     |
+      |                     double **
+In file included from codeml_parra.c:13:
+paml.h:229:32: note: expected 'double *' but argument is of type 'double **'
+  229 | int matout (FILE *file, double x[], int n, int m);
+      |                         ~~~~~~~^~~
+codeml_parra.c:359:21: error: passing argument 2 of 'matout' from incompatible pointer type [-Wincompatible-pointer-types]
+  359 |         matout(fdn, dN_matrix, com.ns, com.ns);
+      |                     ^~~~~~~~~
+      |                     |
+      |                     double **
+paml.h:229:32: note: expected 'double *' but argument is of type 'double **'
+  229 | int matout (FILE *file, double x[], int n, int m);
+      |                         ~~~~~~~^~~
+codeml_parra.c:363:20: error: passing argument 2 of 'matout' from incompatible pointer type [-Wincompatible-pointer-types]
+  363 |         matout(ft, t_matrix, com.ns, com.ns);
+      |                    ^~~~~~~~
+      |                    |
+      |                    double **
+paml.h:229:32: note: expected 'double *' but argument is of type 'double **'
+  229 | int matout (FILE *file, double x[], int n, int m);
+      |                         ~~~~~~~^~~
+codeml_parra.c: In function 'GetOptions':
+codeml_parra.c:382:18: error: implicit declaration of function 'gfopen'; did you mean 'fopen'? [-Wimplicit-function-declaration]
+  382 |     FILE *fctl = gfopen(ctlf, "r");
+      |                  ^~~~~~
+      |                  fopen
+codeml_parra.c:382:18: error: initialization of 'FILE *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+codeml_parra.c:397:21: error: implicit declaration of function 'ReadItems' [-Wimplicit-function-declaration]
+  397 |                 t = ReadItems(optstr[i], pline, &iopt);
+      |                     ^~~~~~~~~
+codeml_parra.c: In function 'main':
+codeml_parra.c:437:19: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  437 |     fout = gfopen(com.outf, "w");
+      |                   ^~~
+      |                   cos
+codeml_parra.c: At top level:
+codeml_parra.c:448:8: error: conflicting types for 'CalculatePatternProbability'; have 'double(int,  int,  double *, double *)'
+  448 | double CalculatePatternProbability(int pattern, int state, double x[], double *workspace)
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+codeml_parra.c:175:25: note: previous implicit declaration of 'CalculatePatternProbability' with type 'int()'
+  175 |                 prob *= CalculatePatternProbability(h, i, x, thread_workspace);
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+codeml_parra.c:455:8: error: conflicting types for 'GetOmegaForClass'; have 'double(int,  int,  double *)'
+  455 | double GetOmegaForClass(int class_idx, int iclass, double x[])
+      |        ^~~~~~~~~~~~~~~~
+codeml_parra.c:252:29: note: previous implicit declaration of 'GetOmegaForClass' with type 'int()'
+  252 |             com.pomega[j] = GetOmegaForClass(j, iclass, x);
+      |                             ^~~~~~~~~~~~~~~~
+codeml_parra.c: In function 'GetOmegaForClass':
+codeml_parra.c:458:21: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  458 |     if (class_idx < com.ncatG && iclass < com.ncatG) {
+      |                     ^~~
+      |                     cos
+codeml_parra.c: In function 'SetDataSet':
+codeml_parra.c:482:5: error: 'com' undeclared (first use in this function); did you mean 'cos'?
+  482 |     com.idata = idata;
+      |     ^~~
+      |     cos
