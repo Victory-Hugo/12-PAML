@@ -15,6 +15,6 @@ RESULT_FILE="${BASE_DIR}/output/Example.txt"
     ${BASE_DIR}/pipe/python/4_分子钟校准.py \
     -t ${BASE_DIR}/output/ID_Length.tree \
     -c ${BASE_DIR}/output/TIP_Length.csv \
-    -m 1.8e-8 \
+    -m 2.53e-8 \
     -o ${BASE_DIR}/output/ \
 
