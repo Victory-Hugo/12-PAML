@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # 1) 指定树文件路径
-tree_file='/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/examples/Example.treefile'
+tree_file='/mnt/f/6_起源地混合地/2-系统发育树/1-ML/output/merge.treefile'
 
 if [[ ! -f "$tree_file" ]]; then
   echo "找不到文件：$tree_file" >&2

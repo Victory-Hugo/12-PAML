@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # --- OpenMP threads ---
-export OMP_NUM_THREADS=16
+export OMP_NUM_THREADS=1
 export OMP_DYNAMIC=false
 export OMP_PROC_BIND=true
 export OMP_PLACES=cores
