@@ -1,0 +1,128 @@
+# Makefile for PAML Parallel Versions
+
+CC = gcc
+CFLAGS = -O3 -fopenmp -Wall -Wno-unused-result -DHAVE_CONFIG_H
+LDFLAGS = -lm -fopenmp
+
+# 源文件和目标文件
+COMMON_OBJS = tools.o treesub_parra.o
+CODEML_PARRA_OBJS = codeml_parra.o $(COMMON_OBJS)
+BASEML_PARRA_OBJS = baseml_parra.o $(COMMON_OBJS)
+YN00_PARRA_OBJS = yn00_parra.o tools.o
+
+# 并行版本的可执行文件
+PARALLEL_PROGS = codeml_parra baseml_parra yn00_parra
+
+# 默认目标
+all: $(PARALLEL_PROGS)
+
+# 编译codeml并行版本
+codeml_parra: $(CODEML_PARRA_OBJS)
+	$(CC) $(CFLAGS) -DCODEML -o $@ $(CODEML_PARRA_OBJS) $(LDFLAGS)
+
+# 编译baseml并行版本
+baseml_parra: $(BASEML_PARRA_OBJS)
+	$(CC) $(CFLAGS) -DBASEML -o $@ $(BASEML_PARRA_OBJS) $(LDFLAGS)
+
+# 编译yn00并行版本
+yn00_parra: $(YN00_PARRA_OBJS)
+	$(CC) $(CFLAGS) -DYN00 -o $@ $(YN00_PARRA_OBJS) $(LDFLAGS)
+
+# 编译规则
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# 特殊编译规则
+codeml_parra.o: codeml_parra.c paml.h
+	$(CC) $(CFLAGS) -DCODEML -c codeml_parra.c -o $@
+
+baseml_parra.o: baseml_parra.c paml.h
+	$(CC) $(CFLAGS) -DBASEML -c baseml_parra.c -o $@
+
+yn00_parra.o: yn00_parra.c paml.h
+	$(CC) $(CFLAGS) -DYN00 -c yn00_parra.c -o $@
+
+treesub_parra.o: treesub_parra.c paml.h
+	$(CC) $(CFLAGS) -c treesub_parra.c -o $@
+
+tools.o: tools.c paml.h
+	$(CC) $(CFLAGS) -c tools.c -o $@
+
+# 测试目标
+test: $(PARALLEL_PROGS)
+	@echo "Testing parallel versions with 4 threads..."
+	@echo "Set OMP_NUM_THREADS=4 for optimal performance"
+	@echo "Testing codeml_parra..."
+	@if [ -f "../examples/lysozyme/lysozyme.dat" ]; then \
+		cd ../examples/lysozyme && \
+		echo "nthreads = 4" >> codeml.ctl && \
+		export OMP_NUM_THREADS=4 && ../../bin/codeml_parra; \
+	else \
+		echo "Example data not found, skipping codeml test"; \
+	fi
+
+# 性能基准测试
+benchmark: $(PARALLEL_PROGS)
+	@echo "Running performance benchmark..."
+	@echo "Testing with different thread counts: 1, 2, 4, 8"
+	@for threads in 1 2 4 8; do \
+		echo "Testing with $$threads threads:"; \
+		export OMP_NUM_THREADS=$$threads && \
+		time ./codeml_parra ../examples/codeml.ctl > /dev/null; \
+	done
+
+# 清理目标
+clean:
+	rm -f $(PARALLEL_PROGS) *.o
+
+# 清理所有生成文件
+distclean: clean
+	rm -f *~ core
+
+# 安装目标
+install: $(PARALLEL_PROGS)
+	mkdir -p ../bin
+	cp $(PARALLEL_PROGS) ../bin/
+
+# 帮助目标
+help:
+	@echo "PAML Parallel Version Makefile"
+	@echo ""
+	@echo "Targets:"
+	@echo "  all        - Build all parallel programs"
+	@echo "  codeml_parra - Build parallel codeml"
+	@echo "  baseml_parra - Build parallel baseml"  
+	@echo "  yn00_parra   - Build parallel yn00"
+	@echo "  test         - Run basic tests"
+	@echo "  benchmark    - Run performance benchmark"
+	@echo "  clean        - Remove object files and executables"
+	@echo "  install      - Install to ../bin directory"
+	@echo "  help         - Show this help message"
+	@echo ""
+	@echo "Environment variables:"
+	@echo "  OMP_NUM_THREADS - Set number of OpenMP threads (default: auto)"
+	@echo "  CC              - C compiler (default: gcc)"
+	@echo "  CFLAGS          - Additional compile flags"
+	@echo ""
+	@echo "Examples:"
+	@echo "  make all"
+	@echo "  export OMP_NUM_THREADS=4 && ./codeml_parra codeml.ctl"
+	@echo "  make benchmark"
+
+# 调试版本
+debug: CFLAGS += -g -DDEBUG -fsanitize=thread
+debug: $(PARALLEL_PROGS)
+
+# 性能分析版本
+profile: CFLAGS += -pg
+profile: LDFLAGS += -pg
+profile: $(PARALLEL_PROGS)
+
+# 检查OpenMP支持
+check-openmp:
+	@echo "Checking OpenMP support..."
+	@echo '#include <omp.h>' | $(CC) -fopenmp -E - > /dev/null 2>&1 && \
+		echo "OpenMP supported" || echo "OpenMP NOT supported"
+	@$(CC) --version
+
+.PHONY: all test benchmark clean distclean install help debug profile check-openmp
