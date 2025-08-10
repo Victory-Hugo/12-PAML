@@ -5,8 +5,8 @@ set -euo pipefail
 #!使用前请一定配置好ctl文件!!!!
 # 定义临时目录
 
-BASEML_PATH="/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/bin/baseml_parallel"
-CTL_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/conf/baseml2.ctl"
+BASEML_PATH="/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/bin/baseml_parra"
+CTL_FILE="/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/conf/baseml_parra.ctl"
 OUT_DIR="/mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/output"
 
 

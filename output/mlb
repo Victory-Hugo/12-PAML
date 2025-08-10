@@ -1,0 +1,19 @@
+BaseML Parallel Analysis Results
+================================
+
+Input files:
+  Control file: /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/conf/baseml_parra.ctl
+  Sequence file: /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/examples/Example.fasta
+
+Dataset:
+  5 sequences, 1841 sites, 613 patterns
+  Model: 4
+
+Results:
+  Log-likelihood: 23.11625765
+  Parameters: kappa=2.0000, alpha=0.5000
+
+Computational details:
+  Function evaluations: 1
+  Time: 0.000156 seconds
+  Threads: 4
