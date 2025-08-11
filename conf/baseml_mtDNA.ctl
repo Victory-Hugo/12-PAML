@@ -1,7 +1,7 @@
       seqfile = /mnt/f/6_起源地混合地/1-筛选样本/output/merge.fasta.aln.fasta
      treefile = /mnt/f/6_起源地混合地/2-系统发育树/1-ML/output/merge.treefile
 
-      outfile = /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/output/Example.txt       * main result file
+      outfile = /mnt/f/OneDrive/文档（科研）/脚本/Download/12-PAML/output/mlb       * main result file
         noisy = 3   * 屏幕输出冗余度（0=安静, 3=详细）
       verbose = 0   * 输出结果详细程度（0=简洁, 1=详细）
 
